@@ -1,0 +1,22 @@
+{
+  "name": "cric-notify",
+  "version": "1.0.0",
+  "description": "A simple site to notify cricket score",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cricket",
+    "notification"
+  ],
+  "engines":{
+    "node": "5.0.0"
+  },
+  "author": "Mohit Rami",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}
