@@ -11,12 +11,14 @@
     "cricket",
     "notification"
   ],
-  "engines":{
+  "engines": {
     "node": "5.0.0"
   },
   "author": "Mohit Rami",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.1"
+    "express": "^4.14.1",
+    "request": "^2.79.0",
+    "socket.io": "^1.7.2"
   }
 }
