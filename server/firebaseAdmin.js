@@ -13,9 +13,17 @@ var getFirebaseDB = () => {
   return admin.database();
 };
 
+var storeOverData = (data) => {
+  var db = getFirebaseDB();
+  var ref = db.ref("/over_example");
+
+  ref.child('data').set({value: data});
+};
+
 module.exports = {
   initializeFirebase,
-  getFirebaseDB
+  getFirebaseDB,
+  storeOverData
 };
 //
 // var db = admin.database();

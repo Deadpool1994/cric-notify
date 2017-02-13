@@ -1,5 +1,8 @@
 const request = require('request');
 var CronJob = require('cron').CronJob;
+var matchService = require('./matchServices.js');
+const firebase = require('./firebaseAdmin.js')
+
 
 var get_data = (callback) => {
 
@@ -11,6 +14,7 @@ var get_data = (callback) => {
 var startCRONJob = () => {
   new CronJob('*/30 * * * * *', () => {
     console.log("getting msg every second");
+    matchService.get_commentary_data(firebase.storeOverData);
   }, () => {
     console.log("stop the cron job");
   },
