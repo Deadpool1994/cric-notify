@@ -24,4 +24,5 @@ io.on('connection',(socket)=>{
 server.listen(port, ()=>{
   console.log(`Remember PORT ${port}...`);
   firebase.initializeFirebase();
+  cronJob.startCRONJob();
 });

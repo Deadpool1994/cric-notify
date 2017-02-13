@@ -1,4 +1,5 @@
 const request = require('request');
+var CronJob = require('cron').CronJob;
 
 var get_data = (callback) => {
 
@@ -7,4 +8,18 @@ var get_data = (callback) => {
   });
 };
 
-module.exports = {get_data};
+var startCRONJob = () => {
+  new CronJob('*/30 * * * * *', () => {
+    console.log("getting msg every second");
+  }, () => {
+    console.log("stop the cron job");
+  },
+  true,
+  'America/Los_Angeles'
+  );
+};
+
+module.exports = {
+  get_data,
+  startCRONJob
+};
