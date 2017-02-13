@@ -1,18 +1,29 @@
 var admin = require('firebase-admin');
 var serviceAccount = require('./json/notify-cricket_service_account.json');
 
+var initializeFirebase = () => {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: 'https://notify-cricket.firebaseio.com/'
+  });
+  return admin;
+};
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://notify-cricket.firebaseio.com/'
-});
+var getFirebaseDB = () => {
+  return admin.database();
+};
 
-var db = admin.database();
-var ref = db.ref("/");
-
- ref.once("value", function(snapshot) {
-   console.log(snapshot.val());
- });
+module.exports = {
+  initializeFirebase,
+  getFirebaseDB
+};
+//
+// var db = admin.database();
+// var ref = db.ref("/");
+//
+//  ref.once("value", function(snapshot) {
+//    console.log(snapshot.val());
+//  });
 // var ref = db.ref("server/saving-data/fireblog");
 //
 // var postsRef = ref.child("posts");
