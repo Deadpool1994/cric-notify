@@ -25,5 +25,4 @@ server.listen(port, ()=>{
   console.log(`Remember PORT ${port}...`);
   firebase.initializeFirebase();
   cronJob.startCRONJob();
-  console.log('is it completing');
 });

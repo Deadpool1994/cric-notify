@@ -15,9 +15,14 @@ var getFirebaseDB = () => {
 
 var storeOverData = (data) => {
   var db = getFirebaseDB();
-  var ref = db.ref("/over_example");
-
-  ref.child('data').set({value: data});
+  var ref = db.ref("/over_example/data_2");
+  ref.on('value', (snapshot) => {
+    if(snapshot.exists()){
+      console.log('data all ready there');
+    }else{
+      ref.set({value: 39});
+    }
+  });
 };
 
 module.exports = {
