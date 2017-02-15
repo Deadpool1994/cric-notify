@@ -14,7 +14,7 @@ var io = socketIO(server);
 app.use(express.static(publicPath));
 
 var dummy = (data) => {
-  io.emit('commentary-data',data);
+  io.emit('commentary-data', data);
 };
 
 io.on('connection',(socket)=>{

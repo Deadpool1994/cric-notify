@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="cricNotify">
 <head>
   <meta charset="utf-8">
 </head>
 
 <body>
-  <p>Welcome to Cric-notification. </p>
+
+  <div class="container">
+    <div ng-view></div>
+  </div>
 
   <script src="/js/jquery.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+  <!-- Angular-Route-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBbiwQW52lAI1T1Zb2Zq8aQvl-ARXl8RlA",
+      authDomain: "notify-cricket.firebaseapp.com",
+      databaseURL: "https://notify-cricket.firebaseio.com",
+      storageBucket: "notify-cricket.appspot.com",
+      messagingSenderId: "814109789225"
+    };
+    firebase.initializeApp(config);
+  </script>
+
   <script src="/js/index.js"></script>
+  <script src="/home.js"></script>
+
 </body>
 </html>
