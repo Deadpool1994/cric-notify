@@ -16,4 +16,12 @@ angular.module('cricNotify.home',['ngRoute','firebase'])
   $scope.syncObject = JSON.parse(obj.$value);
   window.w = $scope.syncObject;
   });
+  firebase.database().ref("/over_example").on('child_added', function(snapshot) {
+   // all records after the last continue to invoke this function
+   console.log(snapshot.val());
+   var notification = new Notification(snapshot.val(), {
+     body: snapshot.val(),
+     icon: 'https://lh3.googleusercontent.com/-rmTI5PWyjkA/AAAAAAAAAAI/AAAAAAAAABc/yXkZnCGdnHk/s120-c/photo.jpg' // optional
+   });
+});
 });
