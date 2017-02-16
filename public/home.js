@@ -7,12 +7,13 @@ angular.module('cricNotify.home',['ngRoute','firebase'])
   });
 }])
 
-.controller('homeCtrl', function($scope, $firebaseArray){
+.controller('homeCtrl', function($scope, $firebaseObject){
   console.log("using home COntroller");
-  var ref = firebase.database().ref("/over_example/data_2");
+  var ref = firebase.database().ref("/over_example/data_3");
   // download the data into a local object
-  $scope.syncObject =  $firebaseArray(ref);
+  var obj = $firebaseObject(ref);
+  obj.$loaded(function(obj) {
+  $scope.syncObject = JSON.parse(obj.$value);
   window.w = $scope.syncObject;
-  console.log($scope.syncObject);
-//  console.log($scope.syncObject.text);
+  });
 });

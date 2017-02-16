@@ -1,6 +1,10 @@
 <p>Welcome to Cric-notification. </p>
 <body ng-controller="homeCtrl">
   <ul>
-    <li ng-repeat="message in syncObject">{{ message.$value }}</li>
+    <li ng-repeat="over in syncObject.query.results.Over">
+      <p ng-repeat="ball in over.Ball">
+        {{ over.num }}.{{ball.n}}   -   {{ ball.c }}
+      </p>
+    </li>
   </ul>
 </body>
