@@ -18,7 +18,7 @@ var dummy = (data) => {
 };
 
 io.on('connection',(socket)=>{
-  var data = cronJob.get_data(dummy);
+  // var data = cronJob.get_data(dummy);
 });
 
 server.listen(port, ()=>{

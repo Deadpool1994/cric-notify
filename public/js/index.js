@@ -5,23 +5,6 @@ angular.module('cricNotify',[
 .config(['$routeProvider', function($routeProvider){
   $routeProvider.otherwise({redirectTo: '/'});
 }])
-var socket = io();
-
-socket.on('connect',() =>{
-  console.log('connected to server');
-});
-
-socket.on('disconnect',() =>{
-  console.log('disconnected to server');
-});
-
-socket.on('commentary-data',(data)=>{
-  console.log('got the data');
-  $("body").append("<p>data</p>");
-  console.log(data);
-  window.we = JSON.parse(data);
-  // var notification = new Notification(data);
-});
 
 $('document').ready(function(){
   console.log("logging");
