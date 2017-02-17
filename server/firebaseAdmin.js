@@ -14,8 +14,15 @@ var getFirebaseDB = () => {
 };
 
 var storeOverData = (data) => {
+    console.log(data);
+  var match_id = data.query.diagnostics.url.content.split('match_id=',2)[1];
+  var over = data.query.results.Over[0].num;
+  var ball = data.query.results.Over[0].Ball[0].n;
+
+  var db_string = match_id+"/commentary/team1/"+over+"-"+ball;
+  console.log(db_string);
   var db = getFirebaseDB();
-  var ref = db.ref("/over_example/data_3");
+  var ref = db.ref(db_string);
   ref.on('value', (snapshot) => {
     if(snapshot.exists()){
       console.log('data all ready there');
