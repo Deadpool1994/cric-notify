@@ -16,10 +16,43 @@ var getFirebaseDB = () => {
 var storeOverData = (data) => {
     console.log(data);
   var match_id = data.query.diagnostics.url.content.split('match_id=',2)[1];
-  var over = data.query.results.Over[0].num;
-  var ball = data.query.results.Over[0].Ball[0].n;
+  var over,ball;
+  if(Array.isArray(data.query.results.Over)){
+    over = data.query.results.Over[0].num;
+    if(Array.isArray(data.query.results.Over[0].Ball)){
+    ball = data.query.results.Over[0].Ball[0].n;
+    }else{
+    ball = data.query.results.Over[0].Ball.n;
+    }
+  }else{
+    over = data.query.results.Over.num;
+    if(Array.isArray(over.Ball)){
+    ball = data.query.results.Over[0].Ball[0].n;
+    }else{
+    ball = data.query.results.Over[0].Ball.n;
+    }
+  }
+
+
+  console.log(over, ball);
 
   var db_string = match_id+"/commentary/team1/"+over+"-"+ball;
+  console.log(db_string);
+  var db = getFirebaseDB();
+  var ref = db.ref(db_string);
+  ref.on('value', (snapshot) => {
+    if(snapshot.exists()){
+      console.log('data all ready there');
+    }else{
+      ref.set(data);
+    }
+  });
+};
+
+var storeScorecardData = (data) => {
+    console.log(data);
+
+  var db_string = match_id+"/scorecard";
   console.log(db_string);
   var db = getFirebaseDB();
   var ref = db.ref(db_string);
@@ -35,7 +68,8 @@ var storeOverData = (data) => {
 module.exports = {
   initializeFirebase,
   getFirebaseDB,
-  storeOverData
+  storeOverData,
+  storeScorecardData
 };
 //
 // var db = admin.database();
