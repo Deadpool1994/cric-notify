@@ -12,7 +12,7 @@ const firebase = require('./firebaseAdmin.js')
 // };
 
 var startCRONJob = () => {
-  new CronJob('*/5 * * * * *', () => {
+  new CronJob('*/30 * * * * *', () => {
     matchService.get_commentary_data(firebase.storeOverData);
   }, () => {
     console.log("stop the cron job");

@@ -22,6 +22,7 @@ io.on('connection',(socket)=>{
 });
 
 server.listen(port, ()=>{
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   console.log(`Remember PORT ${port}...`);
   firebase.initializeFirebase();
   cronJob.startCRONJob();
