@@ -5,8 +5,9 @@ const firebase = require('./firebaseAdmin.js')
 
 var startCRONJob = () => {
   new CronJob('*/30 * * * * *', () => {
-//    matchService.get_scorecard_data(firebase.storeScorecardData);
-    matchService.get_commentary_data(firebase.storeOverData);
+    var data = matchService.get_scorecard_data(firebase);
+    console.log(data);
+    
   }, () => {
     console.log("stop the cron job");
   },

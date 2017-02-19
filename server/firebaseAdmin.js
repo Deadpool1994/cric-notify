@@ -13,9 +13,9 @@ var getFirebaseDB = () => {
   return admin.database();
 };
 
-var storeOverData = (data) => {
-    console.log(data);
-  var match_id = data.query.diagnostics.url.content.split('match_id=',2)[1];
+var storeOverData = (s_data, data) => {
+
+
   var over,ball;
   if(Array.isArray(data.query.results.Over)){
     over = data.query.results.Over[0].num;
@@ -33,10 +33,17 @@ var storeOverData = (data) => {
     }
   }
 
+  if(Array.isArray(s_data.query.results.Scorecard)){
+    var match_id = s_data.query.results.Scorecard[0].mid;
+    var ob = s_data.query.results.Scorecard[0].toss.bat;
+    var curr_team = s_data.query.results.Scorecard[0].teams[ob].sn
+  }else{
+    var match_id = s_data.query.results.Scorecard.mid;
+    var ob = s_data.query.results.Scorecard.toss.bat;
+    var curr_team = s_data.query.results.Scorecard.teams[ob].sn
+  }
 
-  console.log(over, ball);
-
-  var db_string = match_id+"/commentary/team1/"+over+"-"+ball;
+  var db_string = match_id+"/commentary/"+curr_team+"/"+over+"-"+ball;
   console.log(db_string);
   var db = getFirebaseDB();
   var ref = db.ref(db_string);
@@ -52,7 +59,7 @@ var storeOverData = (data) => {
 var storeScorecardData = (data) => {
     console.log(data);
 
-  var db_string = match_id+"/scorecard";
+  var db_string = data.query.results.Scorecard.mid+"/scorecard";
   console.log(db_string);
   var db = getFirebaseDB();
   var ref = db.ref(db_string);
