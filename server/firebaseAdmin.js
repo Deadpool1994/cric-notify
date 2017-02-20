@@ -1,5 +1,6 @@
 var admin = require('firebase-admin');
 var serviceAccount = require('./json/notify-cricket_service_account.json');
+var utils = require('./utils.js');
 
 var initializeFirebase = () => {
   admin.initializeApp({
