@@ -14,13 +14,14 @@ var getFirebaseDB = () => {
   return admin.database();
 };
 
-var storeOverData = (s_data, data) => {
-  var over = utils.convertToArray(data.query.results.Over);
-  var ball = utils.convertToArray(over.Ball);
+var storeOverData = (s_data, counter , data) => {
+  var over = utils.convertToArray(data.query.results.Over)[0];
+  var ball = utils.convertToArray(over.Ball)[0];
   var scorecardData = utils.convertToArray(s_data.query.results.Scorecard);
-  var match_id = scorecardData[0].mid;
-  var ob = scorecardData[0].toss.bat;
-  var curr_team = scorecardData[0].teams[ob].sn
+  var match_id = scorecardData[counter].mid;
+  var ob = scorecardData[counter].toss.bat;
+  var curr_team = scorecardData[counter].teams[ob].sn
+  console.log(over+"  ---  "+ball);
   var db_string = match_id+"/commentary/"+curr_team+"/"+over.num+"-"+ball.n;
   console.log(db_string);
   var db = getFirebaseDB();
