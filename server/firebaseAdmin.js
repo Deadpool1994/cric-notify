@@ -21,15 +21,13 @@ var storeOverData = (s_data, counter , data) => {
   var match_id = scorecardData[counter].mid;
   var ob = scorecardData[counter].toss.bat;
   var curr_team = scorecardData[counter].teams[ob].sn
-  console.log(over+"  ---  "+ball);
   var db_string = match_id+"/commentary/"+curr_team+"/"+over.num+"-"+ball.n;
-  console.log(db_string);
   var db = getFirebaseDB();
   var ref = db.ref(db_string);
 
   ref.on('value', (snapshot) => {
     if(snapshot.exists()){
-      console.log('data all ready there');
+      console.log(db_string+'  data all ready there');
     }else{
       ref.set(data);
     }
@@ -37,21 +35,20 @@ var storeOverData = (s_data, counter , data) => {
 };
 
 var storeScorecardData = (data) => {
-    console.log(data);
   var liveMatches = utils.convertToArray(data.query.results.Scorecard);
-  var db_string = liveMatches.mid+"/scorecard";
-  console.log(db_string);
-  var db = getFirebaseDB();
-  var ref = db.ref(db_string);
-  ref.on('value', (snapshot) => {
-    if(snapshot.exists()){
-      console.log('data all ready there');
-    }else{
-      ref.set(data);
+  for(var liveMatch of liveMatches){
+      var db_string = liveMatch.mid+"/scorecard";
+      var db = getFirebaseDB();
+      var ref = db.ref(db_string);
+      ref.on('value', (snapshot) => {
+        if(snapshot.exists()){
+          console.log(db_string +'  data all ready there');
+        }else{
+          ref.set(data);
+        }
+      });
     }
-  });
-};
-
+  };
 module.exports = {
   initializeFirebase,
   getFirebaseDB,
