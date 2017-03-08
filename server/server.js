@@ -18,12 +18,13 @@ var dummy = (data) => {
 };
 
 io.on('connection',(socket)=>{
+  console.log('on connection');
   // var data = cronJob.get_data(dummy);
 });
 
 server.listen(port, ()=>{
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   console.log(`Remember PORT ${port}...`);
-  firebase.initializeFirebase();
+// var admin =   firebase.initializeFirebase();
   cronJob.startCRONJob();
 });

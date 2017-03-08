@@ -15,6 +15,7 @@ var getFirebaseDB = () => {
 };
 
 var storeOverData = (s_data, counter , data) => {
+  console.log(data);
   var over = utils.convertToArray(data.query.results.Over)[0];
   var ball = utils.convertToArray(over.Ball)[0];
   var scorecardData = utils.convertToArray(s_data.query.results.Scorecard);

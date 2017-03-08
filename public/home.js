@@ -3,7 +3,7 @@ angular.module('cricNotify.home',['ngRoute','firebase'])
 .config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/',{
     templateUrl: '/home.html',
-    controller: 'homeCtrl'
+  //  controller: 'homeCtrl'
   });
 }])
 
