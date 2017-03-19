@@ -12,12 +12,11 @@ var get_commentary_data = (data, callback) => {
           if(err){
             console.log(err);
             return err;
+          }else if(JSON.parse(body).query.diagnostics.url.content){
+            var mid = JSON.parse(body).query.diagnostics.url.content.split("=").pop();
+            var pivot = matchMap.get(mid);
+            callback.storeOverData(data, pivot, JSON.parse(body));
           }
-          //console.log(body);
-          var mid = JSON.parse(body).query.diagnostics.url.content.split("=").pop();
-          var pivot = matchMap.get(mid);
-          //console.log(pivot);
-          callback.storeOverData(data, pivot, JSON.parse(body));
       });
       counter++;
       }
