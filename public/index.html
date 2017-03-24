@@ -8,6 +8,8 @@
 <body>
 
   <button class="primary sendPost"></button>
+  <button class="primary stopPost"></button>
+
   <div class="container">
     <div ng-view></div>
   </div>
@@ -27,6 +29,7 @@
   <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
   <script>
+  var tokenz = '';
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyBbiwQW52lAI1T1Zb2Zq8aQvl-ARXl8RlA",
@@ -43,6 +46,7 @@
       return messaging.getToken()
     })
     .then(function(token){
+      tokenz = token;
       console.log(token);
     })
     .catch(function(err){
@@ -55,7 +59,7 @@
 
     $('.sendPost').on('click', function(){
 
-      fetch('https://iid.googleapis.com/iid/v1/dbUho7z4P6g:APA91bHCp9eeAt8y5L1QG2wl9QmyE6DBrNGz3VAXDH0zru4XOHL17oI8PbV4KSjwNnDKLmD1pomLAOaU7DuKCb4lvHsSN2AyA0HpCf30uArviM2UB77HLiw8aXKwIkiEmb0SKGTY7RAc/rel/topics/movies', {
+      fetch('https://iid.googleapis.com/iid/v1/'+tokenz+'/rel/topics/movies', {
           method: 'POST',
           headers: new Headers({
             'Authorization': 'key=AIzaSyB-fhmVVlOKnoC5xK-Gsa-2gEpqw3lVG2k'
@@ -76,6 +80,31 @@
       //   Authorization: 'AIzaSyBbiwQW52lAI1T1Zb2Zq8aQvl-ARXl8RlA'
       // });
     });
+
+    $('.stopPost').on('click', function(){
+
+      fetch('https://iid.googleapis.com/iid/v1/'+tokenz+'/rel/topics/movies', {
+          method: 'DELETE',
+          headers: new Headers({
+            'Authorization': 'key=AIzaSyB-fhmVVlOKnoC5xK-Gsa-2gEpqw3lVG2k'
+          })
+        }).then(response => {
+          if (response.status < 200 || response.status >= 400) {
+            throw 'Error subscribing to topic: '+response.status + ' - ' + response.text();
+          }
+          console.log('Unsubscribed to movies');
+        }).catch(error => {
+          console.error(error);
+        })
+
+      // $.ajax({
+      //   type: "POST",
+      //   url: 'https://iid.googleapis.com/iid/v1/eNryYYKSKAk:APA91bH5aTPbZJflLxwfbYhqAz7rBrXDOZ95NgCX2GRYIkfHzfaG7A-AtBXjhbL2H6_6LyDjCcew8mZXGlh64nBfKLEUAF713rncyE7SwIKIpVbkaPxrrByY9QwoYhxneX733nlHFpxZ/rel/topics/movies',
+      //   contentType: 'application/json',
+      //   Authorization: 'AIzaSyBbiwQW52lAI1T1Zb2Zq8aQvl-ARXl8RlA'
+      // });
+    });
+
   </script>
 
   <script src="/js/index.js"></script>
