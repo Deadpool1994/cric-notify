@@ -36,13 +36,13 @@ var storeOverData = (s_data, counter , data) => {
     ref.on('value', (snapshot) => {
       if(snapshot.exists()){
         console.log(db_string+'  data all ready there');
-      fcm.sendScoreNotification(getFirebaseAdmin(),ball,curr_team);
+    //  fcm.sendScoreNotification(getFirebaseAdmin(),ball,curr_team);
       }else{
         ref.set(data);
         //call notification method
          console.log(curr_team);
          console.log(db_string);
-      //   fcm.sendScoreNotification(getFirebaseAdmin(),ball,curr_team);
+         fcm.sendScoreNotification(getFirebaseAdmin(),ball,curr_team);
       }
     });
 

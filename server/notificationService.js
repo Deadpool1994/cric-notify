@@ -7,10 +7,18 @@ var sendScoreNotification = (admin, data, curr_team)=>{
     var topic = "('movies' in topics || 'movies' in topics)";
     // See the "Defining the message payload" section below for details
     // on how to define a message payload.
+    var notificationBody;
+    if(data.type === "ball"){
+      notificationBody = `${data.shc},${data.r} run,${data.c}`;
+    }else{
+      notificationBody = `${data.c}`;
+    }
     var payload = {
       notification: {
         title: `${curr_team} ${data.tl}-${data.wkts} (${data.ov}-${data.n})`,
-        body: `${data.c}`
+        body: notificationBody,
+        image: 'https://cdn.vectorstock.com/i/composite/35,44/cricket-icon-vector-783544.jpg',
+        click_action: "http://localhost:3000/#!/"
     },data: {
         score: "850",
         time: "2:45"
