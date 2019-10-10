@@ -40,7 +40,7 @@ var sendScoreNotification = (admin, data, curr_team)=>{
       console.log("Successfully sent message:", err);
     })
     .catch(function(error) {
-      console.log("Error sending message: XXX", error);
+      console.log("Error sending message: ", error);
     });
 };
 
