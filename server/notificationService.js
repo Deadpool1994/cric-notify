@@ -3,7 +3,6 @@ var sendScoreNotification = (admin, data, curr_team)=>{
 
 
     // This registration token comes from the client FCM SDKs.
-    var registrationToken = "eNryYYKSKAk:APA91bH5aTPbZJflLxwfbYhqAz7rBrXDOZ95NgCX2GRYIkfHzfaG7A-AtBXjhbL2H6_6LyDjCcew8mZXGlh64nBfKLEUAF713rncyE7SwIKIpVbkaPxrrByY9QwoYhxneX733nlHFpxZ";
     var topic = "('movies' in topics || 'movies' in topics)";
     // See the "Defining the message payload" section below for details
     // on how to define a message payload.
