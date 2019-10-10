@@ -5,7 +5,6 @@ const firebase = require('./firebaseAdmin.js')
 
 var startCRONJob = () => {
 
-//var admin =   firebase.initializeFirebase();
   new CronJob('*/30 * * * * *', () => {
   var data = matchService.get_scorecard_data(firebase);
   }, () => {
