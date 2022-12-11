@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "cron": "^1.2.1",
-    "express": "^4.14.1",
+    "express": "^4.17.3",
     "firebase": "^3.6.9",
     "firebase-admin": "^4.1.0",
     "request": "^2.79.0",
